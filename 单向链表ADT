@@ -23,7 +23,7 @@ void TraverseList(LinkedList L);
 Status SearchList(LinkedList L, ElemType e);
 Status ReverseList(LinkedList *L);
 Status IsLoopList(LinkedList L);
-void SwapPairs(LinkedList L)
+void SwapPairs(LinkedList L);
 LNode* FindMidNode(LinkedList L);
 void show(void);
 int judge_int(void);

@@ -22,6 +22,7 @@ void TraverseList(LinkedList L);
 Status SearchList(LinkedList L, ElemType e);
 Status ReverseList(LinkedList *L);
 Status IsLoopList(LinkedList L);
+void SwapPairs(LinkedList L)
 LNode* FindMidNode(LinkedList L);
 void show(void);
 int judge_int(void);
@@ -120,22 +121,6 @@ Status SearchList(LinkedList L, ElemType e) {
     return error;
 }
 
-/*
-void ReverseList(LinkedList L) {
-    LinkedList current, next, pre;
-    current = L->next;
-    pre = NULL;
-    while(current != NULL)
-    {
-        next = current->next;
-        current->next = pre;
-        pre = current;
-        current = next;
-    }
-    L->next = pre;
-}
-*/
-
 Status ReverseList(LinkedList *L) {
     LNode *newHead;		//储存每次反转后的第一个节点 
     LNode *p1;			//每次都指向前一个节点	
@@ -174,6 +159,20 @@ Status IsLoopList(LinkedList L) {
         return success;
     }
     return error;
+}
+
+void SwapPairs(LinkedList L) {
+    LinkedList root = L;
+    LinkedList p1 = root;
+    LinkedList p2 = root->next;
+    while (p2 != NULL && p2->next != NULL) {
+        p1->next = p2->next;
+        p2->next = p1->next->next;
+        p1->next->next = p2;
+        p1 = p2;
+        p2 = p2->next;
+    }
+    return;
 }
 
 void show(void)
@@ -361,6 +360,15 @@ int main(void)
             }
             case 9://反转链表中的偶数结点
             {
+                if (head == NULL || head->next == NULL)
+                {
+                    printf("链表为空或者链表只含有两个结点\n");
+                    printf("链表奇偶调转失败\n");
+                }
+                else
+                {
+			    	SwapPairs(head);
+			    }
                 break;
             }
             case 10://查找中间结点
